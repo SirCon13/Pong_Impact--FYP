@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
     {
         if(bricks.Count > 0 || availablePositions.Count == 0) return; // If bricks are already in the scene, don't spawn more
         GameObject brickPrefab = Resources.Load<GameObject>("Prefabs/Brick");
-        for (int i = 0; i < brickNum; i++) // Pick 4 unique positions
+        for (int i = 0; i < brickNum; i++) // Pick unique positions
         {
             int randomIndex = Random.Range(0, availablePositions.Count);
             Vector2 randomPosition = availablePositions[randomIndex];
@@ -546,7 +546,7 @@ public class GameManager : MonoBehaviour
         co_opMode = false;
         two_player = false;
         BackToMainMenu(); // Go back to main menu
-    }    
+    }   
     public void EndGame()
     {
         ResumeGame(); // Resume the game if paused
@@ -556,6 +556,11 @@ public class GameManager : MonoBehaviour
         {
             StopCoroutine(countdownCoroutine); // Cancel the countdown if it was running
         }
+    }
+    public void ExitApp()
+    {
+        Application.Quit(); // Quit the application
+        Debug.Log("Application exited");
     }
 /*----------------------------------------------
                    SETTINGS
